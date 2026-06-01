@@ -28,10 +28,13 @@ export default function App() {
   const messagesEndRef = useRef(null);
   const chatInputRef = useRef(null);
 
-  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'https://geogap-rag.onrender.com';
 
   // Verificar status da API no carregamento
   useEffect(() => {
+    if (!import.meta.env.VITE_BACKEND_URL) {
+      console.warn('VITE_BACKEND_URL não definido. Usando fallback local.');
+    }
     checkBackendStatus();
     // Iniciar com uma mensagem de boas-vindas amigável
     setMessages([
