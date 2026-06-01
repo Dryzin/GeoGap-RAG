@@ -28,7 +28,7 @@ export default function App() {
   const messagesEndRef = useRef(null);
   const chatInputRef = useRef(null);
 
-  const BACKEND_URL = 'http://127.0.0.1:5005';
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
   // Verificar status da API no carregamento
   useEffect(() => {
