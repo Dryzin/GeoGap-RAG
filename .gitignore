@@ -1,0 +1,13 @@
+.env
+/venv
+__pycache__/
+*.pyc
+*.log
+.DS_Store
+
+# Frontend
+**/node_modules/
+**/dist/
+
+# Banco de Dados Vetorial Local
+chroma_db/
