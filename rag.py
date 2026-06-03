@@ -1,13 +1,8 @@
 
 import chromadb
-from chromadb.config import Settings
 import os
 from dotenv import load_dotenv
-import pandas as pd
-import numpy as np
 import google.generativeai as generativeai
-from google import genai
-from google.genai import types
 
 load_dotenv()
 

@@ -8,8 +8,8 @@ from rag import buscar_contexto, melhorarResposta
 load_dotenv()
 
 app = Flask(__name__)
-# Permitir CORS para que o frontend React consiga acessar o backend facilmente
-CORS(app)
+# Permitir CORS apenas nas rotas da API para que o frontend React consiga acessar o backend
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 @app.route("/", methods=["GET"])
 @app.route("/api/status", methods=["GET"])
