@@ -12,10 +12,15 @@ if not chave_secreta:
 
 generativeai.configure(api_key=chave_secreta)
 
-client = chromadb.PersistentClient(path="./chroma_db")
-collection = client.get_or_create_collection(
-    name="geogap"
-)
+client = None
+collection = None
+
+def get_collection():
+    global client, collection
+    if collection is None:
+        client = chromadb.PersistentClient(path="./chroma_db")
+        collection = client.get_or_create_collection(name="geogap")
+    return collection
 
 # Função para gerar resposta a partir da consulta
 def buscar_contexto(consulta):
@@ -25,9 +30,10 @@ def buscar_contexto(consulta):
         content=consulta,
         task_type="retrieval_query"
     )['embedding']
+    collection = get_collection()
     resultados = collection.query(
         query_embeddings=[embedding_consulta],
-        n_results=3
+        n_results=2
     )
     return resultados
 
@@ -42,7 +48,7 @@ def melhorarResposta(inputText):
     
     # Usando o SDK google-generativeai já configurado
     model = generativeai.GenerativeModel(
-        model_name='gemini-2.5-flash',
+        model_name='gemini-1.5-flash',
         system_instruction=system_instruction
     )
     

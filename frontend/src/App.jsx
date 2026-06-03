@@ -33,7 +33,7 @@ export default function App() {
   // Verificar status da API no carregamento
   useEffect(() => {
     if (!import.meta.env.VITE_BACKEND_URL) {
-      console.warn('VITE_BACKEND_URL não definido. Usando fallback local.');
+      console.warn('VITE_BACKEND_URL não definido. Usando URL padrão:', BACKEND_URL);
     }
     checkBackendStatus();
     // Iniciar com uma mensagem de boas-vindas amigável
