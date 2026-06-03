@@ -10,4 +10,4 @@ __pycache__/
 **/dist/
 
 # Banco de Dados Vetorial Local
-chroma_db/
+# chroma_db/  <-- removido do gitignore para permitir deploy do banco vetorial
