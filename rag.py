@@ -47,13 +47,22 @@ def melhorarResposta(inputText):
     """
     
     # Usando o SDK google-generativeai já configurado
-    model = generativeai.GenerativeModel(
-        model_name='gemini-1.5-flash',
-        system_instruction=system_instruction
-    )
-    
-    response = model.generate_content(inputText)
-    return response.text
+    model_names = ['gemini-1.5-pro', 'gemini-1.5', 'gemini-2.5-flash']
+    last_exception = None
+
+    for model_name in model_names:
+        try:
+            model = generativeai.GenerativeModel(
+                model_name=model_name,
+                system_instruction=system_instruction
+            )
+            response = model.generate_content(inputText)
+            return response.text
+        except Exception as e:
+            print(f"Modelo {model_name} falhou: {e}")
+            last_exception = e
+
+    raise RuntimeError(f"Nenhum modelo Gemini disponível: {last_exception}")
 
 
 
