@@ -28,6 +28,9 @@ def chat():
     Rota principal do Chatbot RAG.
     Recebe a pergunta do usuário, faz a busca semântica no ChromaDB,
     combina a pergunta com os contextos e gera a resposta final refinada usando o Gemini 1.5 Flash.
+
+    Estou realizando uma alteração
+
     """
     data = request.json
     if not data or "message" not in data:
